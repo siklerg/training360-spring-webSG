@@ -2,27 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>spring mvc</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/resources/css/bootstrap.min.css}" />
 </head>
 <body>
 
-	<table>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<th:block th:each="employee : ${employees}">
+	<div class="container">
+		<table class="table table-striped">
+			<thead>
 				<tr>
-					<td th:text="${employee.id}"></td>
-					<td th:text="${employee.name}"></td>
+					<th>ID</th>
+					<th>Name</th>
 				</tr>
-			</th:block>
-		</tbody>
-		
-	</table>
+			</thead>
+
+			<tbody>
+				<th:block th:each="employee : ${employees}">
+					<tr>
+						<td th:text="${employee.id}"></td>
+						<td th:text="${employee.name}"></td>
+					</tr>
+				</th:block>
+			</tbody>
+
+		</table>
+
+	</div>
 </body>
 </html>
