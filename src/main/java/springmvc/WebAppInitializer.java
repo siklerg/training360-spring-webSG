@@ -2,6 +2,7 @@ package springmvc;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import springmvc.backend.BackendConfig;
 import springmvc.controller.Webconfig;
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
@@ -9,7 +10,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	//backend-hez tartozó konfiguráció
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		return new Class[] {BackendConfig.class};
 	}
 
 	//frontend-hez tartotó konfiguráció

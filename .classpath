@@ -45,5 +45,23 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Siklér Gábor/.m2/repository/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar" sourcepath="C:/Users/Siklér Gábor/.m2/repository/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="javax.persistence"/>
+			<attribute name="maven.artifactId" value="javax.persistence-api"/>
+			<attribute name="maven.version" value="2.2"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Siklér Gábor/.m2/repository/javax/validation/validation-api/2.0.0.Final/validation-api-2.0.0.Final.jar" sourcepath="C:/Users/Siklér Gábor/.m2/repository/javax/validation/validation-api/2.0.0.Final/validation-api-2.0.0.Final-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="javax.validation"/>
+			<attribute name="maven.artifactId" value="validation-api"/>
+			<attribute name="maven.version" value="2.0.0.Final"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
