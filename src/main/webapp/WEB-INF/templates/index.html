@@ -5,12 +5,10 @@
 </head>
 
 <body>
-
-
 	<div class="container">
-	
-	<h3 th:replace="fragments/page :: title"></h3>
-	
+
+		<h3 th:replace="fragments/page :: title"></h3>
+
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -22,14 +20,23 @@
 			<tbody>
 				<th:block th:each="employee : ${employees}">
 					<tr>
-						<td ><a th:href="@{/employee/{id} (id=${employee.id})}" th:text="${employee.id}"></td>
+						<td><a th:href="@{/employee/{id} (id=${employee.id})}"
+							th:text="${employee.id}"></a></td> 
 						<td th:text="${employee.name}"></td>
 					</tr>
 				</th:block>
 			</tbody>
-
 		</table>
 
+		<form th:action="@{/}" th:object="${empoloyee}" method="post">
+			<div class="form-group">
+				<label for="name-input">Name</label> 
+				<input th:filed="*{name}" id="name-input" class="form-control"/>
+			</div>
+			<button type="submit" class="btn btn-primary">Create employee</button>
+		</form>
 	</div>
+
+
 </body>
 </html>

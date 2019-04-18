@@ -15,8 +15,8 @@ public class EmployeeService {
 	private AtomicInteger id = new AtomicInteger();
 
 	private List<Employee> employees = Collections
-			.synchronizedList(List.of
-					(new Employee(id.incrementAndGet(), "Jack Doe"), new Employee(id.incrementAndGet(), "Jane Doe")));
+			.synchronizedList(new ArrayList<>(List.of
+					(new Employee(id.incrementAndGet(), "Jack Doe"), new Employee(id.incrementAndGet(), "Jane Doe"))));
 
 	public void saveEmployee(String name) {
 		employees.add(new Employee(id.incrementAndGet(), name));
