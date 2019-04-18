@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>spring mvc</title>
-<link rel="stylesheet" type="text/css"
-	th:href="@{/resources/css/bootstrap.min.css}" />
+
+<head th:replace="fragments/page :: header">
 </head>
+
 <body>
 
+
 	<div class="container">
+	
+	<h3 th:replace="fragments/page :: title"></h3>
+	
 		<table class="table table-striped">
 			<thead>
 				<tr>
