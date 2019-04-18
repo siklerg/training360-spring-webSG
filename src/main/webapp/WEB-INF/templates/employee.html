@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/page :: header">
+</head>
+<body>
+
+	<div class="container">
+	
+		<h3 th:replace="fragments/page :: title"></h3>
+		
+		<div>
+			Id: <span th:text="${employee.id}"></span>
+		</div>
+		<div>
+			Name: <span th:text="${employee.name}"></span>
+		</div>
+		<p>
+			<a th:href="@{/}">Back</a>
+		</p>
+	</div>
+</body>
+</html>

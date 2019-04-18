@@ -22,7 +22,7 @@
 			<tbody>
 				<th:block th:each="employee : ${employees}">
 					<tr>
-						<td th:text="${employee.id}"></td>
+						<td ><a th:href="@{/employee/{id} (id=${employee.id})}" th:text="${employee.id}"></td>
 						<td th:text="${employee.name}"></td>
 					</tr>
 				</th:block>
