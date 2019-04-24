@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -50,6 +51,17 @@ public class Webconfig implements WebMvcConfigurer{
 	resolver.setSuffix(".html");
 	resolver.setTemplateMode("HTML5");
 	return resolver;
+	}
+
+	@Bean
+	public ClientLoggerHandlerInterceptor clientLoggerHandlerInterceptor() {
+		return new ClientLoggerHandlerInterceptor();
+	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(clientLoggerHandlerInterceptor());
+		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 
 }
