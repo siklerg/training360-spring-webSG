@@ -15,7 +15,9 @@ public class ClientLoggerHandlerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String client = request.getHeader("User-Agent");
-		logger.debug("***   Client: {}", client);
+		String clientLanguage = request.getHeader("Accept-Language");
+		logger.debug("--->  Client: {}", client);
+		logger.debug("--->  Request lanuage: {}", clientLanguage);
 		return true;
 	}
 	

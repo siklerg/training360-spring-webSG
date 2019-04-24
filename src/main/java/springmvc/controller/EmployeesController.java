@@ -1,5 +1,8 @@
 package springmvc.controller;
 
+import java.util.Locale;
+
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +17,13 @@ import springmvc.model.Employee;
 public class EmployeesController {
 
 	private EmployeeService employeeService;
+	
+	private MessageSource messageSource;
 
-	public EmployeesController(EmployeeService employeeService) {
+	public EmployeesController(EmployeeService employeeService, MessageSource messageSource) {
+		super();
 		this.employeeService = employeeService;
+		this.messageSource = messageSource;
 	}
 
 	@ModelAttribute
@@ -30,9 +37,12 @@ public class EmployeesController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String saveEmployee(@ModelAttribute Employee employee, RedirectAttributes redirectAttributes) {
+	public String saveEmployee(@ModelAttribute Employee employee, RedirectAttributes redirectAttributes, Locale locale) {
 		employeeService.saveEmployee(employee.getName());
-		redirectAttributes.addFlashAttribute("message", "Employee has saved: " + employee.getName());
+		
+		String message = messageSource.getMessage("employee.saved", new Object[] {employee.getName()}, locale);
+		
+		redirectAttributes.addFlashAttribute("message", message);
 		return "redirect:/";
 	}
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
 <head th:replace="fragments/page :: header">
 </head>
 
@@ -8,6 +8,7 @@
 	<div class="container">
 
 		<h3 th:replace="fragments/page :: title"></h3>
+		<a href="?lang=hu_HU">Magyar</a> <a href="?lang=en_US">Angol</a>
 
 		<div th:if="${message}" th:text="${message}"
 			class="alert alert-success"></div>
@@ -16,7 +17,7 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Name</th>
+					<th th:text="#{name}">Name</th>
 				</tr>
 			</thead>
 
@@ -33,10 +34,13 @@
 
 		<form th:action="@{/}" th:object="${empoloyee}" method="post">
 			<div class="form-group">
-				<label for="name-input">Name</label> 
-				<input th:value="${employee.name}" th:name="name" id="name-input" class="form-control" />
+				<label for="name-input">Name</label> <input
+					th:value="${employee.name}" th:name="name" id="name-input"
+					class="form-control" />
 			</div>
-			<button type="submit" class="btn btn-primary">Create employee</button>
+			
+			<button type="submit" class="btn btn-primary">Create
+				employee</button>
 		</form>
 	</div>
 
