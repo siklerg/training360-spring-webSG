@@ -13,14 +13,15 @@
 				Id: <span th:text="${employee.id}"></span>
 			</div>
 			<div class="form-group">
-				<label for="name-input">Name:</label> <input th:value="${employee.name}" th:name="name" class="form-control" id="name-input" />
+				<label for="name-input" th:text="#{name}">Name:</label> 
+				<input th:value="${employee.name}" th:name="name" class="form-control" id="name-input" />
 			</div>
-			<button type="submit" class="btn btn-primary">Modify
+			<button th:text="#{button.modify}" type="submit" class="btn btn-primary">Modify
 				employee</button>
 		</form>
 
 		<p>
-			<a th:href="@{/}">Back</a>
+			<a th:href="@{/}" th:text="#{button.back}">Back</a>
 		</p>
 	</div>
 </body>
