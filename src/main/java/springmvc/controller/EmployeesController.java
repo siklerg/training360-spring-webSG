@@ -40,17 +40,15 @@ public class EmployeesController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView saveEmployee(@Valid Employee employee, BindingResult bindingresult,
+	public ModelAndView saveEmployee(@Valid Employee employee, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, Locale locale) {
 
-		if (bindingresult.hasErrors()) {
-			String messageAlert = messageSource.getMessage("employee.emptyName",  new Object[] {}, locale);
-			redirectAttributes.addFlashAttribute("messageAlert", messageAlert);
-			return new ModelAndView("redirect:/", "employees", employeeService.listEmployees());
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("index", "employees", employeeService.listEmployees());
 		}
 		
 		employeeService.saveEmployee(employee.getName());
-		String message = messageSource.getMessage("employee.saved", new Object[] { employee.getName() }, locale);
+		String message = messageSource.getMessage("message.saved", new Object[] { employee.getName() }, locale);
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return new ModelAndView("redirect:/");
