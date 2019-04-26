@@ -8,9 +8,14 @@
 	<div class="container">
 		<p>
 		<h3 th:replace="fragments/page :: title"></h3>
-		<a href="?lang=hu_HU" class="btn btn-info">Magyar</a> <a
-			href="?lang=en_US" class="btn btn-warning">English</a>
+		<a href="?lang=hu_HU" class="btn btn-info">Magyar</a> 
+		<a href="?lang=en_US" class="btn btn-warning">English</a>
 		<p><p>
+		
+		<a href="?theme=normal" class="btn" role="button">Normal</a> 
+		<a href="?theme=grayscale" class="btn" role="button">Gray</a>
+		<p><p>
+		
 		<a href="/upload-image" class="btn btn-success" th:text="#{button.upload}">Upload</a>
 		<p>
 		<div th:if="${message}" th:text="${message}"

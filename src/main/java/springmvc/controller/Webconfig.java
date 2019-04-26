@@ -7,9 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.ui.context.ThemeSource;
+import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,6 +20,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.theme.SessionThemeResolver;
+import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -89,11 +94,33 @@ public class Webconfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(clientLoggerHandlerInterceptor());
 		registry.addInterceptor(localeChangeInterceptor());
+		registry.addInterceptor(themeChangeInterceptor());
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 
 	@Bean
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
+	}
+
+	@Bean
+	public ThemeSource themeSource() {
+		ResourceBundleThemeSource resourceBundleThemeSource = new ResourceBundleThemeSource();
+		resourceBundleThemeSource.setBasenamePrefix("theme-");
+		return resourceBundleThemeSource;
+	}
+
+	@Bean
+	public ThemeResolver themeResolver() {
+		SessionThemeResolver sessionThemeResolver = new SessionThemeResolver();
+		sessionThemeResolver.setDefaultThemeName("normal");
+		return sessionThemeResolver;
+	}
+	
+	@Bean
+	public ThemeChangeInterceptor themeChangeInterceptor() {
+		ThemeChangeInterceptor themeChangeInterceptor = new ThemeChangeInterceptor();
+		themeChangeInterceptor.setParamName("theme");
+		return themeChangeInterceptor;
 	}
 }
