@@ -8,15 +8,20 @@
 
 		<h3 th:replace="fragments/page :: title"></h3>
 
-		<form th:action="@{/employee/{id} (id=${employee.id})}" th:object=${employee} method="post">
-			<div class="form-group">
-				Id: <span th:text="${employee.id}"></span>
-			</div>
+		<form th:action="@{/upload-image}" th:object=${uploadImageForm} method="post" enctype="multipart/form-data">
+
 			<div class="form-group">
 				<label for="name-input" th:text="#{name}">Name:</label> 
 				<input th:field="*{name}" class="form-control" id="name-input" />
 			</div>
-			<button th:text="#{button.modify}" type="submit" class="btn btn-primary">Modify
+			
+			<div class="form-group">
+				<label for="file-input" th:text="#{file}">File</label> 
+				<input type="file" th:field="*{file}" class="form-control-file" id="file-input" />
+			</div>
+			
+			
+			<button th:text="#{button.upload}" type="submit" class="btn btn-primary">Modify
 				employee</button>
 		</form>
 
