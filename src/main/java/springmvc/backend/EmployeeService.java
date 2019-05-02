@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
 
+import springmvc.controller.EmployeeNotFoundException;
 import springmvc.model.Employee;
 
 @Service
@@ -28,7 +29,7 @@ public class EmployeeService {
 
 	public Employee findEmployeeById(long id) {
 		return employees.stream().filter(e -> id == e.getId()).findFirst()
-				.orElseThrow(() -> new IllegalArgumentException("Can not find employee: " + id));
+				.orElseThrow(() -> new EmployeeNotFoundException());
 	}
 
 	public void updateEmployee(Employee employee) {
