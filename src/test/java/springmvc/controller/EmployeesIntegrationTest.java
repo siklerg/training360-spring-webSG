@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,6 +30,7 @@ import springmvc.backend.EmployeeService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextHierarchy({@ContextConfiguration(classes = BackendConfig.class), @ContextConfiguration(classes = Webconfig.class)})
 @WebAppConfiguration
+@Sql(statements = "delete from employees")
 public class EmployeesIntegrationTest {
 
 	@Autowired
