@@ -1,9 +1,8 @@
 package springmvc.backend;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
@@ -13,33 +12,27 @@ import springmvc.model.Employee;
 @Service
 public class EmployeeService {
 
-	private AtomicInteger id = new AtomicInteger();
+	private EmployeeRepository employeeRepository;
 
-	private List<Employee> employees = Collections
-			.synchronizedList(new ArrayList<>(List.of
-					(new Employee(id.incrementAndGet(), "Jack Doe"), new Employee(id.incrementAndGet(), "Jane Doe"))));
+	public EmployeeService(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
+	}
 
 	public void saveEmployee(String name) {
-		employees.add(new Employee(id.incrementAndGet(), name));
+		employeeRepository.save(new Employee(name));
 	}
 
 	public List<Employee> listEmployees() {
-		return new ArrayList<>(employees);
+		return employeeRepository.findAll();
 	}
 
 	public Employee findEmployeeById(long id) {
-		return employees.stream().filter(e -> id == e.getId()).findFirst()
-				.orElseThrow(() -> new EmployeeNotFoundException());
+		return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException());
 	}
 
+	@Transactional
 	public void updateEmployee(Employee employee) {
-		Employee employeeToModify = findEmployeeById(employee.getId());
+		Employee employeeToModify = employeeRepository.getOne(employee.getId());
 		employeeToModify.setName(employee.getName());
 	}
-
-	public void reset() {
-		id.set(0);
-		employees.clear();
-	}
-
 }

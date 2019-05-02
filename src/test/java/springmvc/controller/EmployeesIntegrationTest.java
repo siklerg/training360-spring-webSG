@@ -41,7 +41,6 @@ public class EmployeesIntegrationTest {
 	
 	@Before
 	public void setup() {
-		employeeService.reset();
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 	
